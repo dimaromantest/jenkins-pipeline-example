@@ -2,9 +2,9 @@ node{
 
   git branch: "master", url: "https://github.com/dimaromantest/jenkins-pipeline-example" 
 
-  stage('Unit Tests') {
+  stage('NPM install') {
     withEnv(["JAVA_HOME=${ tool "java-11" }", "PATH+MAVEN=${ tool "maven" }/bin:${env.JAVA_HOME}/bin"]) {
-        sh "mvn test"
+        sh "npm install"
     }
   }
 
