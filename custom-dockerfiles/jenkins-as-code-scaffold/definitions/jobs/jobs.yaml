@@ -6,7 +6,7 @@ jobs:
               scm {
                 git {
                     remote { url 'https://github.com/dimaromantest/jenkins-pipeline-example' }
-                    branch '*/main'
+                    branch '*/master'
                 }
               }
               scriptPath 'jenkinsfiles/ci/Jenkinsfile'
@@ -21,7 +21,7 @@ jobs:
               scm {
                 git {
                     remote { url 'https://github.com/dimaromantest/jenkins-pipeline-example' }
-                    branch '*/main'
+                    branch '*/master'
                 }
               }
               scriptPath 'jenkinsfiles/pipeline/Jenkinsfile'
