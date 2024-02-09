@@ -2,10 +2,13 @@ node{
 
   git branch: "master", url: "https://github.com/dimaromantest/jenkins-pipeline-example" 
 
-  stage('Unit Tests') {
-    withEnv(["JAVA_HOME=${ tool "java-11" }", "PATH+MAVEN=${ tool "maven" }/bin:${env.JAVA_HOME}/bin"]) {
-        sh "mvn test"
-    }
+  stage('npm install') {
+
+        sh "pwd"
+        sh "ls"
+        sh "cd src"
+        sh "npm -v"
+        sh "npm install"
   }
 
   stage ('Sonarqube') {
