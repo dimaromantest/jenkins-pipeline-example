@@ -1,4 +1,8 @@
-FROM jenkins/jenkins:2.289.2-lts-jdk11
+FROM node as nodejs
+
+FROM jenkins/jenkins:2.319.1-lts-jdk11
+COPY --from=nodejs /usr/local /usr/local
+
 
 USER root
 
