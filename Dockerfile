@@ -1,9 +1,19 @@
-FROM fabric8/java-alpine-openjdk11-jre:1.8
+FROM node:10
 
-USER root
+# Create app directory
+WORKDIR /usr/src/app
 
-ARG version
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
-ENV JAVA_APP_JAR=jenkins-pipeline-example.jar
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
 
-ADD target/$JAVA_APP_JAR /deployments
+# Bundle app source
+COPY . .
+
+EXPOSE 8080
+CMD [ "node", "index.js" ]
