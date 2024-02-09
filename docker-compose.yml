@@ -34,27 +34,27 @@ services:
     ports:
       - "7900:7900"
       - "4444:4444"
-  app-dsv:
-    build: .
-    image: localhost:5000/jenkins-pipeline-example:dsv
-    container_name: app-dsv
-    ports:
-      - 8081:8081
+  # app-dsv:
+  #   build: .
+  #   image: localhost:5000/jenkins-pipeline-example:dsv
+  #   container_name: app-dsv
+  #   ports:
+  #     - 8081:8081
     
-  app-uat:
-    build: .
-    image: localhost:5000/jenkins-pipeline-example:uat
-    container_name: app-uat
-    ports:
-      - 8085:8085
-    environment:
-      - SPRING_PROFILES_ACTIVE=uat
+  # app-uat:
+  #   build: .
+  #   image: localhost:5000/jenkins-pipeline-example:uat
+  #   container_name: app-uat
+  #   ports:
+  #     - 8085:8085
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=uat
 
-  app-prd:
-    build: .
-    image: localhost:5000/jenkins-pipeline-example:prd
-    container_name: app-prd
-    ports:
-      - 8090:8090
-    environment:
-      - SPRING_PROFILES_ACTIVE=prd      
+  # app-prd:
+  #   build: .
+  #   image: localhost:5000/jenkins-pipeline-example:prd
+  #   container_name: app-prd
+  #   ports:
+  #     - 8090:8090
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=prd      
