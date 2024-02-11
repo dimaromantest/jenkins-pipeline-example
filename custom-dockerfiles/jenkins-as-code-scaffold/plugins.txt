@@ -76,3 +76,4 @@ font-awesome-api:5.15.3-4
 workflow-support:3.8
 github
 github-api
+docker
