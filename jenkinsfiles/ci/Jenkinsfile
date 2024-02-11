@@ -1,20 +1,23 @@
-node{
-
-  git branch: "master", url: "https://github.com/dimaromantest/jenkins-pipeline-example" 
-
-  stage('npm install') {
-
-        sh "npm install"
-        sh "npm audit fix --force"
+pipeline {
+  agent {
+    node {
+      label any
+    }
   }
 
-  stage ('Build and Deploy DSV image') {
-    sh "docker build -t localhost:5000/jenkins-pipeline-example:dsv ."
-    sh "docker push localhost:5000/jenkins-pipeline-example:dsv"
+  triggers {
+    pollSCM 'H 20 * * 1-5'
   }
 
-  stage ('Deploy app in DSV') {
-    sh "docker rm -f app-dsv &>/dev/null && sleep 1 && docker run --name=app-dsv -p 8081:8081 --net jenkins-pipeline-example_default -e SPRING_PROFILES_ACTIVE=dsv -d localhost:5000/jenkins-pipeline-example:dsv"
+  stages {
+    stage('checkout') {
+      steps {
+        checkout scm: [$class: 'GitSCM',
+          userRemoteConfigs: [[url: 'git@github.com:dimaromantest/jenkins-pipeline-example.git',
+                              credentialsId: 'myCredId']],
+                              branches: [[name: 'refs/heads/master']]
+        ], poll: true
+      }
+    }
   }
-  
 }
